@@ -11,7 +11,7 @@ RUN npm install
 # copy the app
 COPY . .
 
-# exposeeee port 3000 and start the app
+# eeeexposeeee port 3000 and start the app
 EXPOSE 3000
 CMD [ "npm", "start" ]
 
