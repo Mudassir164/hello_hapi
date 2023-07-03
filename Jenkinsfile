@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
-#hell00000
+#hell0
+
 pipeline {
 
     agent {
