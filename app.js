@@ -2,6 +2,7 @@
 
 const Hapi   = require('@hapi/hapi');
 console.log("hello world")
+console.log("hello world")
 const Server = new Hapi.Server({
     host: 'localhost',
     port: 3000
