@@ -1,36 +1,22 @@
-'use strict';
+const http = require("http");
 
-const Hapi   = require('@hapi/hapi');
-console.log("hello world")
-console.log("hello world")
-const Server = new Hapi.Server({
-    host: 'localhost',
-    port: 3000
-});
-const Hello  = require('./lib/hello');
-
-Server.route({
-    method: 'GET',
-    path: '/hello/{user}',
-    handler: function (request, reply) {
-
-        const result = Hello(decodeURIComponent(request.params.user));
-        return result;
-    }
+const server = http.createServer((req, res) => {
+  const urlPath = req.url;
+  if (urlPath === "/overview") {
+    res.end('Welcome to the "overview page" of the nginX project');
+  } else if (urlPath === "/api") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(
+      JSON.stringify({
+        product_id: "xyz12u3",
+        product_name: "NginX injector",
+      })
+    );
+  } else {
+    res.end("<h1>Successfully started a server</h1>");
+  }
 });
 
-// don't start server if this file was required
-
-if (!module.parent) {
-
-    Server.start((err) => {
-
-        if (err) {
-            throw err;
-        }
-
-        console.log(`Server running at: ${Server.info.uri}`);
-    });
-}
-
-module.exports = Server;
+server.listen(3000, "localhost", () => {
+  console.log("Listening for request");
+});
